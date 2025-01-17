@@ -86,7 +86,7 @@ data_set.info()
 # print(top_10_biggest_decrease)
 
 
-# # Heat map of top 100 traded stock according to value of percentage change
+# Heat map of top 100 traded stock according to value of percentage change
 
 # # Calculating percentage change for each stock
 # price_changes = data_set.groupby('symbol').agg(
@@ -121,32 +121,32 @@ data_set.info()
 # plt.title("Top 100 Traded Stocks by Percentage Change", fontsize=12)
 # plt.show()
 
-# Creating graph of most traded stock by resampling the data for each minutes
+# # Creating graph of most traded stock by resampling the data for each minutes
 
-# Converting the ts column to datetime
-data_set['ts'] = pd.to_datetime(data_set['ts'], errors='coerce')
+# # Converting the ts column to datetime
+# data_set['ts'] = pd.to_datetime(data_set['ts'], errors='coerce')
 
-# Droping rows with invalid timestamps
-data_set = data_set.dropna(subset=['ts'])
+# # Droping rows with invalid timestamps
+# data_set = data_set.dropna(subset=['ts'])
 
-# Finding the most traded stock based on total volume
-most_traded_stock = data_set.groupby('symbol')['volume'].sum().idxmax()
-print(f"The most traded stock is: {most_traded_stock}")
+# # Finding the most traded stock based on total volume
+# most_traded_stock = data_set.groupby('symbol')['volume'].sum().idxmax()
+# print(f"The most traded stock is: {most_traded_stock}")
 
-# Filtering data for the most traded stock
-most_traded_data = data_set[data_set['symbol'] == most_traded_stock]
+# # Filtering data for the most traded stock
+# most_traded_data = data_set[data_set['symbol'] == most_traded_stock]
 
-# Setting the timestamp as the index for resampling
-most_traded_data = most_traded_data.set_index('ts')
+# # Setting the timestamp as the index for resampling
+# most_traded_data = most_traded_data.set_index('ts')
 
-# Resampling data for each minute, summing the volume
-resampled_data = most_traded_data['volume'].resample('1T').sum()
+# # Resampling data for each minute, summing the volume
+# resampled_data = most_traded_data['volume'].resample('1T').sum()
 
-# Plotting the graph
-plt.figure(figsize=(12, 6))
-plt.plot(resampled_data, marker='o', linestyle='-', color='b')
-plt.title(f"Trading Volume of {most_traded_stock} Over Time (1-Minute Intervals)", fontsize=16)
-plt.xlabel("Time", fontsize=14)
-plt.ylabel("Volume Traded", fontsize=14)
-plt.grid(True)
-plt.show()
+# # Plotting the graph
+# plt.figure(figsize=(12, 6))
+# plt.plot(resampled_data, marker='o', linestyle='-', color='b')
+# plt.title(f"Trading Volume of {most_traded_stock} Over Time (1-Minute Intervals)", fontsize=16)
+# plt.xlabel("Time", fontsize=14)
+# plt.ylabel("Volume Traded", fontsize=14)
+# plt.grid(True)
+# plt.show()
